@@ -2,8 +2,21 @@ package com.zappts.magicthegathering.api.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Table(name = "cartas")
+@Entity
 public class Carta {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
 	private String edicao;
@@ -11,7 +24,15 @@ public class Carta {
 	private boolean laminada;
 	private BigDecimal preco;
 	private Integer quantidade;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "carta_jogador_id")
 	private CartasJogador lista;
+	
+	
+	public Carta() {
+		
+	}
 	
 	public Long getId() {
 		return id;

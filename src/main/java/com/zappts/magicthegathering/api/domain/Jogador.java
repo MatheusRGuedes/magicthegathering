@@ -2,13 +2,30 @@ package com.zappts.magicthegathering.api.domain;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Table(name = "jogadores")
+@Entity
 public class Jogador {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	//@Column(nullable = false, length = 256)
 	private String nome;
+	
+	@OneToMany(mappedBy = "jogador")
 	private List<CartasJogador> listas;
 	
+	
 	public Jogador() {}
+	
 
 	public Long getId() {
 		return id;
