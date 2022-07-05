@@ -2,12 +2,14 @@ package com.zappts.magicthegathering.api.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Table(name = "jogadores")
 @Entity
@@ -17,7 +19,8 @@ public class Jogador {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	//@Column(nullable = false, length = 256)
+	@NotBlank
+	@Column(nullable = false, length = 256)
 	private String nome;
 	
 	@OneToMany(mappedBy = "jogador")
