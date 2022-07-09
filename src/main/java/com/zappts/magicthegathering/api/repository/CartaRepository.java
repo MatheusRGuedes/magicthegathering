@@ -11,4 +11,6 @@ import com.zappts.magicthegathering.api.domain.Carta;
 public interface CartaRepository extends JpaRepository<Carta, Long>{
 
 	List<Carta> findByListaId(Long listaId);
+	
+	boolean existsByIdAndListaId(Long id, Long listaId);
 }
