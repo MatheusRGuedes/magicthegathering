@@ -24,7 +24,7 @@ public class Jogador {
 	private String nome;
 	
 	@OneToMany(mappedBy = "jogador")
-	private List<CartasJogador> listas;
+	private List<ListaJogador> listas;
 	
 	
 	public Jogador() {}
@@ -44,10 +44,10 @@ public class Jogador {
 		this.nome = nome;
 	}
 	
-	public List<CartasJogador> getListas() {
+	public List<ListaJogador> getListas() {
 		return listas;
 	}
-	public void setListas(List<CartasJogador> listas) {
+	public void setListas(List<ListaJogador> listas) {
 		this.listas = listas;
 	}
 }

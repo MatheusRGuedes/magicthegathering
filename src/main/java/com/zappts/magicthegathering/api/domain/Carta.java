@@ -2,13 +2,12 @@ package com.zappts.magicthegathering.api.domain;
 
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Table(name = "cartas")
@@ -25,9 +24,9 @@ public class Carta {
 	private BigDecimal preco;
 	private Integer quantidade;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "carta_jogador_id")
-	private CartasJogador lista;
+	@ManyToOne
+	@JoinColumn(name = "lista_jogador_id")
+	private ListaJogador lista;
 	
 	
 	public Carta() {
@@ -83,10 +82,10 @@ public class Carta {
 		this.quantidade = quantidade;
 	}
 	
-	public CartasJogador getLista() {
+	public ListaJogador getLista() {
 		return lista;
 	}
-	public void setLista(CartasJogador lista) {
+	public void setLista(ListaJogador lista) {
 		this.lista = lista;
 	}
 }

@@ -1,31 +1,39 @@
 package com.zappts.magicthegathering.api.domain;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-@Table(name = "cartas_jogadores")
+@Table(name = "lista_jogadores")
 @Entity
-public class CartasJogador {
+public class ListaJogador {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
+	@Column(nullable = false, length = 256)
+	private String nome;
+	
 	@ManyToOne
 	@JoinColumn(name = "jogador_id")
 	private Jogador jogador;
 
-	@OneToOne(mappedBy = "lista")
-	private Carta carta;
+	@OneToMany(mappedBy = "lista")
+	private List<Carta> cartas;
 	
 	
-	public CartasJogador() {
+	public ListaJogador() {
 		
 	}
 	
@@ -36,6 +44,13 @@ public class CartasJogador {
 		this.id = id;
 	}
 	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public Jogador getJogador() {
 		return jogador;
 	}
@@ -43,10 +58,10 @@ public class CartasJogador {
 		this.jogador = jogador;
 	}
 
-	public Carta getCarta() {
-		return carta;
+	public List<Carta> getCartas() {
+		return cartas;
 	}
-	public void setCarta(Carta carta) {
-		this.carta = carta;
+	public void setCartas(List<Carta> cartas) {
+		this.cartas = cartas;
 	}
 }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zappts.magicthegathering.api.domain.Carta;
-import com.zappts.magicthegathering.api.domain.CartasJogador;
+import com.zappts.magicthegathering.api.domain.ListaJogador;
 import com.zappts.magicthegathering.api.repository.CartaRepository;
 import com.zappts.magicthegathering.api.repository.CartasJogadorRepository;
 import com.zappts.magicthegathering.api.repository.JogadorRepository;
@@ -57,7 +57,7 @@ public class CartaService {
 			return null;
 		}
 		
-		final CartasJogador lista = cartasJogadorRepository.findById(listaId).get();
+		final ListaJogador lista = cartasJogadorRepository.findById(listaId).get();
 		request.setLista(lista);
 		
 		return repository.save(request);
