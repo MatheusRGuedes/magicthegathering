@@ -2,6 +2,7 @@ package com.zappts.magicthegathering.api.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Table(name = "cartas")
 @Entity
 public class Carta {
@@ -17,13 +20,23 @@ public class Carta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable = false, length = 256)
 	private String nome;
+	
+	@Column(nullable = false)
 	private String edicao;
+	
+	@Column(nullable = false)
 	private String idioma;
-	private boolean laminada;
+	
+	private String laminada;
+	
+	@Column(columnDefinition = "decimal", precision = 6, scale = 2)
 	private BigDecimal preco;
 	private Integer quantidade;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "lista_jogador_id")
 	private ListaJogador lista;
@@ -61,13 +74,13 @@ public class Carta {
 		this.idioma = idioma;
 	}
 	
-	public boolean isLaminada() {
+	public String getLaminada() {
 		return laminada;
 	}
-	public void setLaminada(boolean laminada) {
+	public void setLaminada(String laminada) {
 		this.laminada = laminada;
 	}
-	
+
 	public BigDecimal getPreco() {
 		return preco;
 	}

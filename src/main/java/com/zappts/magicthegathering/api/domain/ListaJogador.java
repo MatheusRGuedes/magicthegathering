@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Table(name = "lista_jogadores")
 @Entity
 public class ListaJogador {
@@ -29,6 +31,7 @@ public class ListaJogador {
 	@JoinColumn(name = "jogador_id")
 	private Jogador jogador;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "lista")
 	private List<Carta> cartas;
 	
