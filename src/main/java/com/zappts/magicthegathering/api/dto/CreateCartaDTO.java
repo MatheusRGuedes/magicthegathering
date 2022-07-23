@@ -1,11 +1,11 @@
-package com.zappts.magicthegathering.dto;
+package com.zappts.magicthegathering.api.dto;
 
 import java.math.BigDecimal;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.zappts.magicthegathering.api.enums.Idioma;
+import com.zappts.magicthegathering.domain.enums.Idioma;
 
 public class CreateCartaDTO {
 	
@@ -15,8 +15,8 @@ public class CreateCartaDTO {
 	private String edicao;
 	@NotNull
 	private Idioma idioma;
-	@NotBlank
-	private String laminada;
+	@NotNull
+	private Boolean laminada;
 	private BigDecimal valor;
 	private Integer quantidade;
 	
@@ -41,10 +41,10 @@ public class CreateCartaDTO {
 		this.idioma = idioma;
 	}
 	
-	public String getLaminada() {
+	public Boolean getLaminada() {
 		return laminada;
 	}
-	public void setLaminada(String laminada) {
+	public void setLaminada(Boolean laminada) {
 		this.laminada = laminada;
 	}
 	

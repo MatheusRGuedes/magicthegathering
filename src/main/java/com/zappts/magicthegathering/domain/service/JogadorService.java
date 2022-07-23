@@ -1,4 +1,4 @@
-package com.zappts.magicthegathering.service;
+package com.zappts.magicthegathering.domain.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zappts.magicthegathering.api.domain.Jogador;
-import com.zappts.magicthegathering.api.repository.JogadorRepository;
+import com.zappts.magicthegathering.domain.model.Jogador;
+import com.zappts.magicthegathering.domain.repository.JogadorRepository;
 
 @Service
 public class JogadorService {

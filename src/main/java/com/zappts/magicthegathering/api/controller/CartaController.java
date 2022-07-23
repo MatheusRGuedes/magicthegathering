@@ -1,4 +1,4 @@
-package com.zappts.magicthegathering.controller;
+package com.zappts.magicthegathering.api.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zappts.magicthegathering.api.domain.Carta;
-import com.zappts.magicthegathering.dto.CreateCartaDTO;
-import com.zappts.magicthegathering.dto.UpdateCartaDTO;
-import com.zappts.magicthegathering.service.CartaService;
+import com.zappts.magicthegathering.api.dto.CreateCartaDTO;
+import com.zappts.magicthegathering.api.dto.UpdateCartaDTO;
+import com.zappts.magicthegathering.domain.model.Carta;
+import com.zappts.magicthegathering.domain.service.CartaService;
 
 @RestController
 @RequestMapping("/jogadores")

@@ -1,4 +1,4 @@
-package com.zappts.magicthegathering.api.domain;
+package com.zappts.magicthegathering.domain.model;
 
 import java.math.BigDecimal;
 
@@ -14,7 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.zappts.magicthegathering.api.enums.Idioma;
+import com.zappts.magicthegathering.domain.enums.Idioma;
+
+/*
+ * Boolean no MySql é convertido para integer 0-false ou 1-true
+ * */
 
 @Table(name = "cartas")
 @Entity
@@ -34,7 +38,7 @@ public class Carta {
 	@Column(nullable = false)
 	private Idioma idioma;
 	
-	private String laminada;
+	private Boolean laminada;
 	
 	@Column(columnDefinition = "Decimal", precision = 6, scale = 2)
 	private BigDecimal valor;
@@ -79,10 +83,10 @@ public class Carta {
 		this.idioma = idioma;
 	}
 
-	public String getLaminada() {
+	public Boolean getLaminada() {
 		return laminada;
 	}
-	public void setLaminada(String laminada) {
+	public void setLaminada(Boolean laminada) {
 		this.laminada = laminada;
 	}
 	

@@ -1,4 +1,4 @@
-package com.zappts.magicthegathering.service;
+package com.zappts.magicthegathering.domain.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +10,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.zappts.magicthegathering.api.domain.Carta;
-import com.zappts.magicthegathering.api.domain.ListaJogador;
-import com.zappts.magicthegathering.api.repository.CartaRepository;
-import com.zappts.magicthegathering.api.repository.JogadorRepository;
-import com.zappts.magicthegathering.api.repository.ListaJogadorRepository;
+import com.zappts.magicthegathering.domain.model.Carta;
+import com.zappts.magicthegathering.domain.model.ListaJogador;
+import com.zappts.magicthegathering.domain.repository.CartaRepository;
+import com.zappts.magicthegathering.domain.repository.JogadorRepository;
+import com.zappts.magicthegathering.domain.repository.ListaJogadorRepository;
 
 @Service
 public class CartaService {

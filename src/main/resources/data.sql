@@ -3,8 +3,8 @@ INSERT INTO JOGADORES (ID, NOME) VALUES (1, 'Matheus');
 INSERT INTO LISTA_JOGADORES (ID, NOME, JOGADOR_ID) VALUES (1, 'Lista 1', 1);
 
 INSERT INTO CARTAS (ID, NOME, EDICAO, IDIOMA, LAMINADA, VALOR, QUANTIDADE, lista_jogador_id) 
-VALUES ('1', 'cart1', '5ª Edição', 'INGLES', 'N', 29.99, 1, 1);
+VALUES ('1', 'cart1', '5ª Edição', 'INGLES', false, 29.99, 1, 1);
 INSERT INTO CARTAS (ID, NOME, EDICAO, IDIOMA, LAMINADA, VALOR, QUANTIDADE, lista_jogador_id) 
-VALUES ('2', 'cart2', '10ª Edição', 'PORTUGUES', 'S', 1092.50, 2, 1);
+VALUES ('2', 'cart2', '10ª Edição', 'PORTUGUES', true, 1092.50, 2, 1);
 INSERT INTO CARTAS (ID, NOME, EDICAO, IDIOMA, LAMINADA, VALOR, QUANTIDADE, lista_jogador_id) 
-VALUES ('3', 'cart3', '8ª Edição', 'JAPONES', 'N', 0.5, 1, 1);
+VALUES ('3', 'cart3', '8ª Edição', 'JAPONES', false, 0.5, 1, 1);

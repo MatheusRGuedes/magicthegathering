@@ -1,4 +1,4 @@
-package com.zappts.magicthegathering.api.enums;
+package com.zappts.magicthegathering.domain.enums;
 
 public enum Idioma {
 

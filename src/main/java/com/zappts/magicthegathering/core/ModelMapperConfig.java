@@ -4,8 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.zappts.magicthegathering.api.domain.Carta;
-import com.zappts.magicthegathering.dto.CreateCartaDTO;
+import com.zappts.magicthegathering.api.dto.CreateCartaDTO;
+import com.zappts.magicthegathering.domain.model.Carta;
 
 /* Por ser uma biblioteca apenas, o model mapper deve ser avisado para o spring container */
 

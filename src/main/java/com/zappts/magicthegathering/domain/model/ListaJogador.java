@@ -1,4 +1,4 @@
-package com.zappts.magicthegathering.api.domain;
+package com.zappts.magicthegathering.domain.model;
 
 import java.util.List;
 

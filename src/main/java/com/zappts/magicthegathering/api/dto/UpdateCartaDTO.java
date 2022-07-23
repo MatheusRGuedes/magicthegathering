@@ -1,4 +1,4 @@
-package com.zappts.magicthegathering.dto;
+package com.zappts.magicthegathering.api.dto;
 
 import java.math.BigDecimal;
 
