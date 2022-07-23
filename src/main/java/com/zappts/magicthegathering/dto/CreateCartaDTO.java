@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.zappts.magicthegathering.api.enums.Idioma;
+
 public class CreateCartaDTO {
 	
 	@NotBlank
@@ -12,10 +14,10 @@ public class CreateCartaDTO {
 	@NotBlank
 	private String edicao;
 	@NotNull
-	private String idioma;
+	private Idioma idioma;
 	@NotBlank
 	private String laminada;
-	private BigDecimal preco;
+	private BigDecimal valor;
 	private Integer quantidade;
 	
 	public String getNome() {
@@ -32,10 +34,10 @@ public class CreateCartaDTO {
 		this.edicao = edicao;
 	}
 	
-	public String getIdioma() {
+	public Idioma getIdioma() {
 		return idioma;
 	}
-	public void setIdioma(String idioma) {
+	public void setIdioma(Idioma idioma) {
 		this.idioma = idioma;
 	}
 	
@@ -46,11 +48,11 @@ public class CreateCartaDTO {
 		this.laminada = laminada;
 	}
 	
-	public BigDecimal getPreco() {
-		return preco;
+	public BigDecimal getValor() {
+		return valor;
 	}
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 	
 	public Integer getQuantidade() {

@@ -1,15 +1,20 @@
 package com.zappts.magicthegathering.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.zappts.magicthegathering.api.domain.Carta;
 import com.zappts.magicthegathering.api.domain.ListaJogador;
 import com.zappts.magicthegathering.api.repository.CartaRepository;
-import com.zappts.magicthegathering.api.repository.ListaJogadorRepository;
 import com.zappts.magicthegathering.api.repository.JogadorRepository;
+import com.zappts.magicthegathering.api.repository.ListaJogadorRepository;
 
 @Service
 public class CartaService {
@@ -23,7 +28,7 @@ public class CartaService {
 	@Autowired
 	private ListaJogadorRepository listaJogadorRepository;
 	
-	public List<Carta> getCartas(Long jogadorId, Long listaId) {
+	public List<Carta> getCartas(Long jogadorId, Long listaId, Optional<String> orderParam) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
 			return null;
@@ -33,7 +38,14 @@ public class CartaService {
 			return null;
 		}
 		
-		final List<Carta> listaCartas = repository.findByListaId(listaId);
+		List<Carta> listaCartas = new ArrayList<>();
+		
+		if (orderParam.isPresent()) {
+			listaCartas = getCartasSorted(listaId, orderParam.get());
+		} else {
+			listaCartas = repository.findByListaId(listaId);
+		}
+		
 		return listaCartas;
 	}
 	
@@ -61,12 +73,16 @@ public class CartaService {
 			return null;
 		}
 		
+		if (isCartaRepeated(request, listaId)) {
+			return null;
+		}
+		
 		final ListaJogador lista = listaJogadorRepository.findById(listaId).get();
 		request.setLista(lista);
 		
 		return repository.save(request);
 	}
-	
+
 	public Carta update(Long jogadorId, Long listaId, Long cartaId, Carta request) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
@@ -79,7 +95,7 @@ public class CartaService {
 		
 		//final CartasJogador lista = cartasJogadorRepository.findById(listaId).get();
 		final Carta carta = repository.findById(cartaId).get();
-		carta.setPreco(request.getPreco());
+		carta.setValor(request.getValor());
 		carta.setQuantidade(request.getQuantidade());
 		
 		return repository.save(carta);
@@ -87,14 +103,34 @@ public class CartaService {
 	
 	public List<Carta> delete(Long jogadorId, Long listaId, Long cartaId) {
 		
+		if (!jogadorRepository.existsById(jogadorId)) {
+			return null;
+		}
+		
 		if (!repository.existsByIdAndListaId(cartaId, listaId)) {
 			return null;
 		}
 		
 		repository.deleteById(cartaId);
 		
-		final List<Carta> cartas = repository.findAll();
+		final List<Carta> cartas = repository.findByListaId(listaId);
 		return cartas;
+	}
+	
+	// Get Cartas Ordered
+	private List<Carta> getCartasSorted(Long listaId, String order) {
+		if ("nome".equalsIgnoreCase(order) || "valor".equalsIgnoreCase(order)) {
+			return repository.findByListaId(listaId, Sort.by(Direction.ASC, order));
+		}
+		return repository.findByListaId(listaId);
+	}
+	
+	private boolean isCartaRepeated(Carta request, Long listaId) {
+		List<Carta> cartas = repository.findByNomeAndListaId(request.getNome(), listaId);
+		List<Carta> duplicadas = cartas.stream()
+				.filter(carta -> carta.equals(request))
+				.collect(Collectors.toList());
+		return !duplicadas.isEmpty();
 	}
 }
 

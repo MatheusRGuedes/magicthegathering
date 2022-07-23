@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.zappts.magicthegathering.api.enums.Idioma;
 
 @Table(name = "cartas")
 @Entity
@@ -27,13 +30,15 @@ public class Carta {
 	@Column(nullable = false)
 	private String edicao;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private String idioma;
+	private Idioma idioma;
 	
 	private String laminada;
 	
-	@Column(columnDefinition = "decimal", precision = 6, scale = 2)
-	private BigDecimal preco;
+	@Column(columnDefinition = "Decimal", precision = 6, scale = 2)
+	private BigDecimal valor;
+	
 	private Integer quantidade;
 	
 	@JsonBackReference
@@ -67,27 +72,27 @@ public class Carta {
 		this.edicao = edicao;
 	}
 	
-	public String getIdioma() {
+	public Idioma getIdioma() {
 		return idioma;
 	}
-	public void setIdioma(String idioma) {
+	public void setIdioma(Idioma idioma) {
 		this.idioma = idioma;
 	}
-	
+
 	public String getLaminada() {
 		return laminada;
 	}
 	public void setLaminada(String laminada) {
 		this.laminada = laminada;
 	}
-
-	public BigDecimal getPreco() {
-		return preco;
-	}
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
-	}
 	
+	public BigDecimal getValor() {
+		return valor;
+	}
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
 	public Integer getQuantidade() {
 		return quantidade;
 	}
@@ -101,4 +106,52 @@ public class Carta {
 	public void setLista(ListaJogador lista) {
 		this.lista = lista;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((edicao == null) ? 0 : edicao.hashCode());
+		result = prime * result + ((idioma == null) ? 0 : idioma.hashCode());
+		result = prime * result + ((laminada == null) ? 0 : laminada.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Carta other = (Carta) obj;
+		if (edicao == null) {
+			if (other.edicao != null)
+				return false;
+		} else if (!edicao.equals(other.edicao))
+			return false;
+		if (idioma != other.idioma)
+			return false;
+		if (laminada == null) {
+			if (other.laminada != null)
+				return false;
+		} else if (!laminada.equals(other.laminada))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (valor == null) {
+			if (other.valor != null)
+				return false;
+		} else if (!valor.equals(other.valor))
+			return false;
+		return true;
+	}
+	
+	
 }
