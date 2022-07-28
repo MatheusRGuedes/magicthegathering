@@ -28,7 +28,7 @@ public class Carta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false, length = 256)
+	@Column(nullable = false, length = 60)
 	private String nome;
 	
 	@Column(nullable = false)
@@ -38,6 +38,7 @@ public class Carta {
 	@Column(nullable = false)
 	private Idioma idioma;
 	
+	@Column(nullable = false)
 	private Boolean laminada;
 	
 	@Column(columnDefinition = "Decimal", precision = 6, scale = 2)
@@ -111,7 +112,7 @@ public class Carta {
 		this.lista = lista;
 	}
 
-	@Override
+	/*@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -121,7 +122,7 @@ public class Carta {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
 		return result;
-	}
+	}*/
 
 	@Override
 	public boolean equals(Object obj) {

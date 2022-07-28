@@ -9,18 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 @Table(name = "jogadores")
 @Entity
 public class Jogador {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
-	@Column(nullable = false, length = 256)
+	@Column(nullable = false, length = 60)
 	private String nome;
 	
 	@OneToMany(mappedBy = "jogador")

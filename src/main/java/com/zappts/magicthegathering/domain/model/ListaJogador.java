@@ -20,11 +20,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class ListaJogador {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
-	@Column(nullable = false, length = 256)
+	@Column(nullable = false, length = 60)
 	private String nome;
 	
 	@ManyToOne
