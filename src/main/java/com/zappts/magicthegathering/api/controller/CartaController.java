@@ -33,7 +33,7 @@ public class CartaController {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	@GetMapping("/{jogadorId}/listas/{listaId}")
+	@GetMapping("/{jogadorId}/listas/{listaId}/cartas")
 	public ResponseEntity<List<Carta>> getCartas(
 			@PathVariable Long jogadorId, 
 			@PathVariable Long listaId,
