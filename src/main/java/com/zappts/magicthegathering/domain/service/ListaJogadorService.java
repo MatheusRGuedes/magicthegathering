@@ -71,7 +71,11 @@ public class ListaJogadorService {
 			return null;
 		}
 		
+		Jogador jogador = jogadorRepository.findById(jogadorId).get();
+		
 		request.setId(listaId);
+		request.setJogador(jogador);
+		
 		return repository.save(request);
 	}
 	

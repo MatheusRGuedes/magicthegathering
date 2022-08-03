@@ -9,7 +9,9 @@ import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,7 +57,23 @@ public class ListaJogadorController {
 		return ResponseEntity.ok(toResponse(lista));
 	}
 	
+	@PatchMapping("/{jogadorId}/listas/{listaId}")
+	public ResponseEntity<ListaJogadorResponse> updateLista(
+			@PathVariable Long jogadorId, 
+			@PathVariable Long listaId, 
+			@Valid @RequestBody ListaJogadorDTO listaJogadorDTO) {
+		ListaJogador request = toRequest(listaJogadorDTO);
+		ListaJogador lista = service.update(jogadorId, listaId, request);
+		return ResponseEntity.ok(toResponse(lista));
+	}
 	
+	@DeleteMapping("/{jogadorId}/listas/{listaId}")
+	public ResponseEntity<List<ListaJogadorResponse>> deleteLista(
+			@PathVariable Long jogadorId, 
+			@PathVariable Long listaId) {
+		List<ListaJogador> listas = service.delete(jogadorId, listaId);
+		return ResponseEntity.ok(toResponseList(listas));
+	}
 	
 	// MAPPERS
 	private ListaJogador toRequest(ListaJogadorDTO createListaDTO) {

@@ -2,6 +2,7 @@ package com.zappts.magicthegathering.domain.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class ListaJogador {
 	private Jogador jogador;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "lista")
+	@OneToMany(mappedBy = "lista", cascade = CascadeType.REMOVE)
 	private List<Carta> cartas;
 	
 	
