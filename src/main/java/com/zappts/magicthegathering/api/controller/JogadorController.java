@@ -1,6 +1,8 @@
 package com.zappts.magicthegathering.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -31,19 +33,21 @@ public class JogadorController {
 	private ModelMapper modelMapper;
 	
 	@GetMapping
-	public ResponseEntity<List<Jogador>> getJogadores() {
+	public ResponseEntity<List<JogadorDTO>> getJogadores() {
 		final List<Jogador> jogadores = service.getAll();
-		return ResponseEntity.ok(jogadores);
+		return ResponseEntity.ok(toResponseList(jogadores));
 	}
 	
 	@GetMapping("/{jogadorId}")
-	public ResponseEntity<Jogador> getJogador(@PathVariable final Long jogadorId) {
+	public ResponseEntity<JogadorDTO> getJogador(
+			@PathVariable final Long jogadorId) {
 		final Jogador jogador = service.findOne(jogadorId);
-		return ResponseEntity.ok(jogador);
+		return ResponseEntity.ok(toResponse(jogador));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Jogador> createJogador(@Valid @RequestBody final JogadorDTO jogadorDTO) {
+	public ResponseEntity<Jogador> createJogador(
+			@Valid @RequestBody final JogadorDTO jogadorDTO) {
 		final Jogador request = toRequest(jogadorDTO);
 		final Jogador jogador = service.create(request);
 		return ResponseEntity.ok(jogador);
@@ -59,14 +63,30 @@ public class JogadorController {
 	}
 	
 	@DeleteMapping("/{jogadorId}")
-	public ResponseEntity<List<Jogador>> deleteJogador(@PathVariable final Long jogadorId) {
+	public ResponseEntity<List<JogadorDTO>> deleteJogador(
+			@PathVariable final Long jogadorId) {
 		final List<Jogador> jogadores = service.delete(jogadorId);
-		return ResponseEntity.ok(jogadores);
+		return ResponseEntity.ok(toResponseList(jogadores));
 	}
 	
 	// Model Mapper
 	private Jogador toRequest(JogadorDTO jogadorDTO) {
 		return modelMapper.map(jogadorDTO, Jogador.class);
 	}
-	
+	// TODO retirar condição ao add exceções no service
+	private JogadorDTO toResponse(Jogador jogador) {
+		if (jogador != null) 
+			return modelMapper.map(jogador, JogadorDTO.class);
+		else 
+			return null;
+	}
+	private List<JogadorDTO> toResponseList(List<Jogador> jogadores) {
+		if (jogadores != null) {
+			return jogadores.stream()
+				.map(jogador -> toResponse(jogador))
+				.collect(Collectors.toList());
+		} else {
+			return new ArrayList<>();
+		}
+	}
 }

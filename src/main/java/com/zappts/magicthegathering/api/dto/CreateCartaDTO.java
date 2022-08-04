@@ -5,13 +5,17 @@ import java.math.BigDecimal;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.zappts.magicthegathering.domain.enums.Idioma;
 
 public class CreateCartaDTO {
 	
 	@NotBlank
+	@Length(max = 60)
 	private String nome;
 	@NotBlank
+	@Length(max = 60)
 	private String edicao;
 	@NotNull
 	private Idioma idioma;

@@ -2,6 +2,7 @@ package com.zappts.magicthegathering.domain.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Jogador {
 	@Column(nullable = false, length = 60)
 	private String nome;
 	
-	@OneToMany(mappedBy = "jogador")
+	@OneToMany(mappedBy = "jogador", cascade = CascadeType.REMOVE)
 	private List<ListaJogador> listas;
 	
 	
