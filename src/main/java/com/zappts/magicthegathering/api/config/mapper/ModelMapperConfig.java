@@ -1,4 +1,4 @@
-package com.zappts.magicthegathering.core;
+package com.zappts.magicthegathering.api.config.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zappts.magicthegathering.core.exceptions.JogadorNotFoundException;
+import com.zappts.magicthegathering.core.exceptions.ListaNotFoundException;
 import com.zappts.magicthegathering.domain.model.Jogador;
 import com.zappts.magicthegathering.domain.model.ListaJogador;
 import com.zappts.magicthegathering.domain.repository.JogadorRepository;
 import com.zappts.magicthegathering.domain.repository.ListaJogadorRepository;
-
-//#TODO trocar retorno nulo por exceptions
 
 @Service
 public class ListaJogadorService {
@@ -25,7 +25,7 @@ public class ListaJogadorService {
 	public List<ListaJogador> getListas(Long jogadorId) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			return null;
+			throw new JogadorNotFoundException();
 		}
 		
 		List<ListaJogador> listas = repository.findAllByJogadorId(jogadorId);
@@ -39,11 +39,11 @@ public class ListaJogadorService {
 	public ListaJogador getLista(Long jogadorId, Long listaId) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			return null;
+			throw new JogadorNotFoundException();
 		}
 		
 		if (!repository.existsById(listaId)) {
-			return null;
+			throw new ListaNotFoundException();
 		}
 		
 		return repository.findById(listaId).get();
@@ -52,7 +52,7 @@ public class ListaJogadorService {
 	public ListaJogador create(Long jogadorId, ListaJogador request) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			return null;
+			throw new JogadorNotFoundException();
 		}
 		
 		Jogador jogador = jogadorRepository.findById(jogadorId).get();
@@ -64,11 +64,11 @@ public class ListaJogadorService {
 	public ListaJogador update(Long jogadorId, Long listaId, ListaJogador request) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			return null;
+			throw new JogadorNotFoundException();
 		}
 		
 		if (!repository.existsById(listaId)) {
-			return null;
+			throw new ListaNotFoundException();
 		}
 		
 		Jogador jogador = jogadorRepository.findById(jogadorId).get();
@@ -82,11 +82,11 @@ public class ListaJogadorService {
 	public List<ListaJogador> delete(Long jogadorId, Long listaId) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			return null;
+			throw new JogadorNotFoundException();
 		}
 		
 		if (!repository.existsById(listaId)) {
-			return null;
+			throw new ListaNotFoundException();
 		}
 		
 		repository.deleteById(listaId);

@@ -66,7 +66,7 @@ public class CartaController {
 			@PathVariable Long jogadorId, 
 			@PathVariable Long listaId,
 			@PathVariable Long cartaId,
-			@RequestBody UpdateCartaDTO updateCartaDTO) {
+			@Valid @RequestBody UpdateCartaDTO updateCartaDTO) {
 		final Carta request = toRequest(updateCartaDTO);
 		final Carta carta = service.update(jogadorId, listaId, cartaId, request);
 		return ResponseEntity.ok(carta);

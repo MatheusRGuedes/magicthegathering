@@ -2,6 +2,7 @@ package com.zappts.magicthegathering.api.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +22,7 @@ public class CreateCartaDTO {
 	private Idioma idioma;
 	@NotNull
 	private Boolean laminada;
+	@Digits(integer = 4, fraction = 2)
 	private BigDecimal valor;
 	private Integer quantidade;
 	
