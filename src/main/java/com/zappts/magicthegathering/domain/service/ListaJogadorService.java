@@ -25,7 +25,7 @@ public class ListaJogadorService {
 	public List<ListaJogador> getListas(Long jogadorId) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		List<ListaJogador> listas = repository.findAllByJogadorId(jogadorId);
@@ -39,11 +39,11 @@ public class ListaJogadorService {
 	public ListaJogador getLista(Long jogadorId, Long listaId) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		if (!repository.existsById(listaId)) {
-			throw new ListaNotFoundException();
+			throw new ListaNotFoundException(listaId);
 		}
 		
 		return repository.findById(listaId).get();
@@ -52,7 +52,7 @@ public class ListaJogadorService {
 	public ListaJogador create(Long jogadorId, ListaJogador request) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		Jogador jogador = jogadorRepository.findById(jogadorId).get();
@@ -64,11 +64,11 @@ public class ListaJogadorService {
 	public ListaJogador update(Long jogadorId, Long listaId, ListaJogador request) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		if (!repository.existsById(listaId)) {
-			throw new ListaNotFoundException();
+			throw new ListaNotFoundException(listaId);
 		}
 		
 		Jogador jogador = jogadorRepository.findById(jogadorId).get();
@@ -82,11 +82,11 @@ public class ListaJogadorService {
 	public List<ListaJogador> delete(Long jogadorId, Long listaId) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		if (!repository.existsById(listaId)) {
-			throw new ListaNotFoundException();
+			throw new ListaNotFoundException(listaId);
 		}
 		
 		repository.deleteById(listaId);

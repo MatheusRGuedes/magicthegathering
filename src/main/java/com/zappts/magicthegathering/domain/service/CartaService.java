@@ -19,6 +19,8 @@ import com.zappts.magicthegathering.domain.repository.CartaRepository;
 import com.zappts.magicthegathering.domain.repository.JogadorRepository;
 import com.zappts.magicthegathering.domain.repository.ListaJogadorRepository;
 
+//TODO adicionar o id a ser mostrado ao lançar exceções
+
 @Service
 public class CartaService {
 
@@ -34,11 +36,11 @@ public class CartaService {
 	public List<Carta> getCartas(Long jogadorId, Long listaId, Optional<String> orderParam) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		if (!listaJogadorRepository.existsById(listaId)) {
-			throw new ListaNotFoundException();
+			throw new ListaNotFoundException(listaId);
 		}
 		
 		List<Carta> listaCartas = new ArrayList<>();
@@ -55,11 +57,11 @@ public class CartaService {
 	public Carta getCarta(Long jogadorId, Long listaId, Long cartaId) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		if (!repository.existsByIdAndListaId(cartaId, listaId)) {
-			throw new CartaNotFoundException();
+			throw new CartaNotFoundException(cartaId);
 		}
 		
 		final Carta carta = repository.findById(cartaId).get();
@@ -69,11 +71,11 @@ public class CartaService {
 	public Carta create(Long jogadorId, Long listaId, Carta request) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		if (!listaJogadorRepository.existsById(listaId)) {
-			throw new ListaNotFoundException();
+			throw new ListaNotFoundException(listaId);
 		}
 		
 		if (isCartaRepeated(request, listaId)) {
@@ -89,11 +91,11 @@ public class CartaService {
 	public Carta update(Long jogadorId, Long listaId, Long cartaId, Carta request) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		if (!repository.existsByIdAndListaId(cartaId, listaId)) {
-			throw new CartaNotFoundException();
+			throw new CartaNotFoundException(cartaId);
 		}
 		
 		//final CartasJogador lista = cartasJogadorRepository.findById(listaId).get();
@@ -107,11 +109,11 @@ public class CartaService {
 	public List<Carta> delete(Long jogadorId, Long listaId, Long cartaId) {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(jogadorId);
 		}
 		
 		if (!repository.existsByIdAndListaId(cartaId, listaId)) {
-			throw new CartaNotFoundException();
+			throw new CartaNotFoundException(cartaId);
 		}
 		
 		repository.deleteById(cartaId);

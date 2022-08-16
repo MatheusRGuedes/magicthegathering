@@ -29,7 +29,8 @@ public abstract class BusinesException extends RuntimeException {
 	public enum Codes {
 		JOGADOR_NOT_FOUND_EXCEPTION("Jogador not found."),
 		LISTA_NOT_FOUND_EXCEPTION("Lista not found."),
-		CARTA_NOT_FOUND_EXCEPTION("Carta not found.");
+		CARTA_NOT_FOUND_EXCEPTION("Carta not found."),
+		INTERNAL_SERVER_ERROR_EXCEPTION("Internal server error.");
 		
 		private String message;
 		

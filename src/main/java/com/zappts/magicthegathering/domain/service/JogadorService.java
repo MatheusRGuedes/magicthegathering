@@ -23,7 +23,7 @@ public class JogadorService {
 	public Jogador findOne(Long id) {
 		
 		if (!repository.existsById(id)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(id);
 		}
 		
 		Optional<Jogador> jogador = repository.findById(id);
@@ -37,7 +37,7 @@ public class JogadorService {
 	public Jogador update(Long id, Jogador request) {
 		
 		if (!repository.existsById(id)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(id);
 		}
 		
 		request.setId(id);
@@ -48,7 +48,7 @@ public class JogadorService {
 	public List<Jogador> delete(Long id) {
 		
 		if (!repository.existsById(id)) {
-			throw new JogadorNotFoundException();
+			throw new JogadorNotFoundException(id);
 		}
 		
 		repository.deleteById(id);
