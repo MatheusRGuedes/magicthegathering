@@ -61,7 +61,11 @@ public class CartaService {
 			throw new JogadorNotFoundException(jogadorId);
 		}
 		
-		if (!repository.existsByIdAndListaId(cartaId, listaId)) {
+		if (!listaJogadorRepository.existsById(listaId)) {
+			throw new ListaNotFoundException(listaId);
+		}
+		
+		if (!repository.existsById(cartaId)) {
 			throw new CartaNotFoundException(cartaId);
 		}
 		
@@ -95,7 +99,11 @@ public class CartaService {
 			throw new JogadorNotFoundException(jogadorId);
 		}
 		
-		if (!repository.existsByIdAndListaId(cartaId, listaId)) {
+		if (!listaJogadorRepository.existsById(listaId)) {
+			throw new ListaNotFoundException(listaId);
+		}
+		
+		if (!repository.existsById(cartaId)) {
 			throw new CartaNotFoundException(cartaId);
 		}
 		
@@ -113,7 +121,11 @@ public class CartaService {
 			throw new JogadorNotFoundException(jogadorId);
 		}
 		
-		if (!repository.existsByIdAndListaId(cartaId, listaId)) {
+		if (!listaJogadorRepository.existsById(listaId)) {
+			throw new ListaNotFoundException(listaId);
+		}
+		
+		if (!repository.existsById(cartaId)) {
 			throw new CartaNotFoundException(cartaId);
 		}
 		
