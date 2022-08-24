@@ -1,14 +1,10 @@
 package com.zappts.magicthegathering.core.exceptions;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 /*
  * Class of Exception business for the application
  * */
 
 @SuppressWarnings("serial")
-@ResponseStatus(code = HttpStatus.NOT_FOUND)
 public abstract class BusinesException extends RuntimeException {
 
 	private Codes codes;
@@ -30,7 +26,9 @@ public abstract class BusinesException extends RuntimeException {
 		JOGADOR_NOT_FOUND_EXCEPTION("Jogador not found."),
 		LISTA_NOT_FOUND_EXCEPTION("Lista not found."),
 		CARTA_NOT_FOUND_EXCEPTION("Carta not found."),
-		INTERNAL_SERVER_ERROR_EXCEPTION("Internal server error.");
+		CARTA_DUPLICATED_EXCEPTION("Carta is duplicated."),
+		INTERNAL_SERVER_ERROR_EXCEPTION("Internal server error."),
+		METHOD_ARGUMENT_NOT_VALID_EXCEPTION("Argument not valid.");
 		
 		private String message;
 		

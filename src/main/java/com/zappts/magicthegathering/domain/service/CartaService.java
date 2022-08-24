@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.zappts.magicthegathering.core.exceptions.CartaDuplicatedException;
 import com.zappts.magicthegathering.core.exceptions.CartaNotFoundException;
 import com.zappts.magicthegathering.core.exceptions.JogadorNotFoundException;
 import com.zappts.magicthegathering.core.exceptions.ListaNotFoundException;
@@ -79,7 +80,7 @@ public class CartaService {
 		}
 		
 		if (isCartaRepeated(request, listaId)) {
-			return null;
+			throw new CartaDuplicatedException();
 		}
 		
 		final ListaJogador lista = listaJogadorRepository.findById(listaId).get();

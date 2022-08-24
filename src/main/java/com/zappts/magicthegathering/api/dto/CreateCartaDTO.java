@@ -22,7 +22,7 @@ public class CreateCartaDTO {
 	private Idioma idioma;
 	@NotNull
 	private Boolean laminada;
-	@Digits(integer = 4, fraction = 2)
+	@Digits(integer = 4, fraction = 2, message = "Deve conter 4 digitos inteiros e 2 decimais.")
 	private BigDecimal valor;
 	private Integer quantidade;
 	

@@ -112,18 +112,6 @@ public class Carta {
 		this.lista = lista;
 	}
 
-	/*@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((edicao == null) ? 0 : edicao.hashCode());
-		result = prime * result + ((idioma == null) ? 0 : idioma.hashCode());
-		result = prime * result + ((laminada == null) ? 0 : laminada.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
-		return result;
-	}*/
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -150,13 +138,6 @@ public class Carta {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (valor == null) {
-			if (other.valor != null)
-				return false;
-		} else if (!valor.equals(other.valor))
-			return false;
 		return true;
 	}
-	
-	
 }
