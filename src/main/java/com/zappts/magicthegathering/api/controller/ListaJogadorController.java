@@ -1,12 +1,9 @@
 package com.zappts.magicthegathering.api.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zappts.magicthegathering.api.config.mapper.ListaJogadorMapper;
 import com.zappts.magicthegathering.api.dto.ListaJogadorDTO;
 import com.zappts.magicthegathering.api.dto.ListaJogadorResponse;
 import com.zappts.magicthegathering.domain.model.ListaJogador;
@@ -31,13 +29,13 @@ public class ListaJogadorController {
 	private ListaJogadorService service;
 	
 	@Autowired
-	private ModelMapper modelMapper;
+	private ListaJogadorMapper mapper;
 
 	@GetMapping("/{jogadorId}/listas")
 	public ResponseEntity<List<ListaJogadorResponse>> getListas(
 			@PathVariable Long jogadorId) {
 		List<ListaJogador> listas = service.getListas(jogadorId);
-		return ResponseEntity.ok(toResponseList(listas));
+		return ResponseEntity.ok(mapper.toResponseList(listas));
 	}
 
 	@GetMapping("/{jogadorId}/listas/{listaId}")
@@ -45,16 +43,16 @@ public class ListaJogadorController {
 			@PathVariable Long jogadorId,
 			@PathVariable Long listaId) {
 		ListaJogador lista = service.getLista(jogadorId, listaId);
-		return ResponseEntity.ok(toResponse(lista));
+		return ResponseEntity.ok(mapper.toResponse(lista));
 	}
 	
 	@PostMapping("/{jogadorId}/listas")
 	public ResponseEntity<ListaJogadorResponse> createLista(
 			@PathVariable Long jogadorId, 
 			@Valid @RequestBody ListaJogadorDTO listaJogadorDTO) {
-		ListaJogador request = toRequest(listaJogadorDTO);
+		ListaJogador request = mapper.toRequest(listaJogadorDTO);
 		ListaJogador lista = service.create(jogadorId, request);
-		return ResponseEntity.ok(toResponse(lista));
+		return ResponseEntity.ok(mapper.toResponse(lista));
 	}
 	
 	@PatchMapping("/{jogadorId}/listas/{listaId}")
@@ -62,9 +60,9 @@ public class ListaJogadorController {
 			@PathVariable Long jogadorId, 
 			@PathVariable Long listaId, 
 			@Valid @RequestBody ListaJogadorDTO listaJogadorDTO) {
-		ListaJogador request = toRequest(listaJogadorDTO);
+		ListaJogador request = mapper.toRequest(listaJogadorDTO);
 		ListaJogador lista = service.update(jogadorId, listaId, request);
-		return ResponseEntity.ok(toResponse(lista));
+		return ResponseEntity.ok(mapper.toResponse(lista));
 	}
 	
 	@DeleteMapping("/{jogadorId}/listas/{listaId}")
@@ -72,31 +70,6 @@ public class ListaJogadorController {
 			@PathVariable Long jogadorId, 
 			@PathVariable Long listaId) {
 		List<ListaJogador> listas = service.delete(jogadorId, listaId);
-		return ResponseEntity.ok(toResponseList(listas));
-	}
-	
-	// MAPPERS
-	private ListaJogador toRequest(ListaJogadorDTO createListaDTO) {
-		return modelMapper.map(createListaDTO, ListaJogador.class);
-	}
-	
-	private ListaJogadorResponse toResponse(ListaJogador lista) {
-		if (lista != null) {
-			// Mapeamento definido no modelmapperconfig
-			return modelMapper.map(lista, ListaJogadorResponse.class);
-		} else {
-			return null;
-		}
-	}
-	
-	private List<ListaJogadorResponse> toResponseList(List<ListaJogador> listas) {
-		// TODO tirar condições após implementar exceptions
-		if (listas != null) {
-			return listas.stream()
-				.map(lista -> toResponse(lista))
-				.collect(Collectors.toList());
-		} else {
-			return new ArrayList<>();
-		}
+		return ResponseEntity.ok(mapper.toResponseList(listas));
 	}
 }

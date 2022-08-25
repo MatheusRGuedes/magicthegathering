@@ -22,13 +22,23 @@ public class ModelMapperConfig {
 		//	.addMappings(mapper -> mapper.skip(Carta::setId))
 		//	.addMappings(mapper -> mapper.skip(Carta::setLista));
 		
+		//Valida se as propriedades combinam entre DTO e Domain
+		modelMapper.validate();
+		
 		modelMapper.createTypeMap(ListaJogador.class, ListaJogadorResponse.class)
 			.addMappings(mapper -> mapper.<String>map(
 				src -> src.getJogador().getNome(), (dest, value) -> dest.setJogador(value)));
 		
-		//Valida se as propriedades combinam entre DTO e Domain
-		modelMapper.validate();
-		
 		return modelMapper;
+	}
+	
+	@Bean
+	public JogadorMapper jogadorMapper() {
+		return new JogadorMapper();
+	}
+	
+	@Bean
+	public ListaJogadorMapper listaJogadorMapper() {
+		return new ListaJogadorMapper();
 	}
 }
