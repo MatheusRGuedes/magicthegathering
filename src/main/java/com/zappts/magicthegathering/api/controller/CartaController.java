@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zappts.magicthegathering.api.config.mapper.CartaMapper;
 import com.zappts.magicthegathering.api.dto.CreateCartaDTO;
 import com.zappts.magicthegathering.api.dto.UpdateCartaDTO;
 import com.zappts.magicthegathering.domain.model.Carta;
@@ -31,7 +31,7 @@ public class CartaController {
 	private CartaService service;
 	
 	@Autowired
-	private ModelMapper modelMapper;
+	private CartaMapper mapper;
 	
 	@GetMapping("/{jogadorId}/listas/{listaId}/cartas")
 	public ResponseEntity<List<Carta>> getCartas(
@@ -56,7 +56,7 @@ public class CartaController {
 			@PathVariable Long jogadorId, 
 			@PathVariable Long listaId,
 			@Valid @RequestBody final CreateCartaDTO createCartaDTO) {
-		final Carta request = toRequest(createCartaDTO);
+		final Carta request = mapper.toRequest(createCartaDTO);
 		final Carta carta = service.create(jogadorId, listaId, request);
 		return ResponseEntity.ok(carta);
 	}
@@ -67,7 +67,7 @@ public class CartaController {
 			@PathVariable Long listaId,
 			@PathVariable Long cartaId,
 			@Valid @RequestBody UpdateCartaDTO updateCartaDTO) {
-		final Carta request = toRequest(updateCartaDTO);
+		final Carta request = mapper.toRequest(updateCartaDTO);
 		final Carta carta = service.update(jogadorId, listaId, cartaId, request);
 		return ResponseEntity.ok(carta);
 	}
@@ -79,13 +79,5 @@ public class CartaController {
 			@PathVariable Long cartaId) {
 		final List<Carta> cartas = service.delete(jogadorId, listaId, cartaId);
 		return ResponseEntity.ok(cartas);
-	}
-	
-	// Model Mapper
-	private Carta toRequest(CreateCartaDTO createCartaDTO) {
-		return modelMapper.map(createCartaDTO, Carta.class); 
-	}
-	private Carta toRequest(UpdateCartaDTO updateCartaDTO) {
-		return modelMapper.map(updateCartaDTO, Carta.class);
 	}
 }

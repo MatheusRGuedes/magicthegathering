@@ -41,4 +41,9 @@ public class ModelMapperConfig {
 	public ListaJogadorMapper listaJogadorMapper() {
 		return new ListaJogadorMapper();
 	}
+	
+	@Bean
+	public CartaMapper cartaMapper() {
+		return new CartaMapper();
+	}
 }
