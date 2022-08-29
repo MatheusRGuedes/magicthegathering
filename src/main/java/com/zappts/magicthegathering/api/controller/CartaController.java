@@ -23,6 +23,9 @@ import com.zappts.magicthegathering.api.dto.UpdateCartaDTO;
 import com.zappts.magicthegathering.domain.model.Carta;
 import com.zappts.magicthegathering.domain.service.CartaService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = "Carta")
 @RestController
 @RequestMapping("/jogadores")
 public class CartaController {

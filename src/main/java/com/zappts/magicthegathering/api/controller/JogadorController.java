@@ -20,6 +20,13 @@ import com.zappts.magicthegathering.api.dto.JogadorDTO;
 import com.zappts.magicthegathering.domain.model.Jogador;
 import com.zappts.magicthegathering.domain.service.JogadorService;
 
+import io.swagger.annotations.Api;
+
+/*
+ * @Api --> correlaciona o nome para configurar detalhes do controlador no swagger;
+ * */
+
+@Api(tags = "Jogador")
 @RestController
 @RequestMapping("/jogadores")
 public class JogadorController {

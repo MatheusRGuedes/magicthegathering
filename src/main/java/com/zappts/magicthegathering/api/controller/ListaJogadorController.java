@@ -21,6 +21,9 @@ import com.zappts.magicthegathering.api.dto.ListaJogadorResponse;
 import com.zappts.magicthegathering.domain.model.ListaJogador;
 import com.zappts.magicthegathering.domain.service.ListaJogadorService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = "Lista Jogador")
 @RestController
 @RequestMapping("/jogadores")
 public class ListaJogadorController {
