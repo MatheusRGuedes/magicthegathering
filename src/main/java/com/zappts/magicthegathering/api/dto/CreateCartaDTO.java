@@ -10,6 +10,9 @@ import org.hibernate.validator.constraints.Length;
 
 import com.zappts.magicthegathering.domain.enums.Idioma;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(value = "Carta - Create")
 public class CreateCartaDTO {
 	
 	@NotBlank

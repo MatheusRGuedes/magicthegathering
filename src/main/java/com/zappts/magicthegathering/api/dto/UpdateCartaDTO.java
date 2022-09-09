@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.Digits;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(value = "Carta - Update")
 public class UpdateCartaDTO {
 
 	@Digits(integer = 4, fraction = 2)

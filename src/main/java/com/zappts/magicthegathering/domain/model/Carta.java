@@ -16,10 +16,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.zappts.magicthegathering.domain.enums.Idioma;
 
+import io.swagger.annotations.ApiModel;
+
 /*
  * Boolean no MySql é convertido para integer 0-false ou 1-true
  * */
 
+@ApiModel(value = "Carta - Response")
 @Table(name = "cartas")
 @Entity
 public class Carta {

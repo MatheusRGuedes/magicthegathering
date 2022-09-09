@@ -1,5 +1,8 @@
 package com.zappts.magicthegathering.api.dto;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(value = "Lista Jogador - Response")
 public class ListaJogadorResponse {
 
 	private Long id;

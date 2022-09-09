@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(value = "Jogador - Response")
 @Table(name = "jogadores")
 @Entity
 public class Jogador {

@@ -4,6 +4,9 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(value = "Lista Jogador - Request")
 public class ListaJogadorDTO {
 	
 	@Length(max = 60)

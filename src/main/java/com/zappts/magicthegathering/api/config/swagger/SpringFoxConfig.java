@@ -43,8 +43,8 @@ public class SpringFoxConfig {
 	
 	private ApiInfo getApiInfo() {
 		return new ApiInfo("Swagger - Magic The Gathering", 
-				"This is a simple demonstration of using the magictthegathering API.", "1.0", "", 
-				ApiInfo.DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0.html", 
+				"This is a simple demonstration of using the Magic The Gathering API for manage your carts.", 
+				"1.0", "", ApiInfo.DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0.html", 
 				new ArrayList<>());
 	}
 }
