@@ -1,0 +1,1 @@
+alter table jogadores rename column nome to username

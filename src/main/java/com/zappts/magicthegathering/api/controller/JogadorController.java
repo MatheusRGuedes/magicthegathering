@@ -24,6 +24,8 @@ import io.swagger.annotations.Api;
 
 /*
  * @Api --> correlaciona o nome para configurar detalhes do controlador no swagger;
+ * 
+ * TODO ALTERAR RETORNO PARA jogadorDTO - post e put
  * */
 
 @Api(tags = "Jogador")

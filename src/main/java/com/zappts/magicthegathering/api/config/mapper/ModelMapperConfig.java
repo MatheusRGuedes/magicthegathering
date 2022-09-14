@@ -27,7 +27,7 @@ public class ModelMapperConfig {
 		
 		modelMapper.createTypeMap(ListaJogador.class, ListaJogadorResponse.class)
 			.addMappings(mapper -> mapper.<String>map(
-				src -> src.getJogador().getNome(), (dest, value) -> dest.setJogador(value)));
+				src -> src.getJogador().getUsername(), (dest, value) -> dest.setJogador(value)));
 		
 		return modelMapper;
 	}

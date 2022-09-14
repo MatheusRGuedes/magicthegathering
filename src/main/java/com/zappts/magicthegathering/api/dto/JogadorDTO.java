@@ -13,7 +13,10 @@ public class JogadorDTO {
 	
 	@Length(max = 60)
 	@NotBlank
-	private String nome;
+	private String username;
+	
+	@NotBlank
+	private String password;
 	
 	public JogadorDTO() {
 		
@@ -26,10 +29,17 @@ public class JogadorDTO {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getUsername() {
+		return username;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

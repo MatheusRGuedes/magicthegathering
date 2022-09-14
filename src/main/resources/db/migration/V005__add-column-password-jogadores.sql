@@ -1,0 +1,1 @@
+alter table jogadores add column password varchar(20)
