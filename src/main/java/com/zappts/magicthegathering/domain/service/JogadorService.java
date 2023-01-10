@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.zappts.magicthegathering.core.exceptions.JogadorNotFoundException;
@@ -11,10 +15,13 @@ import com.zappts.magicthegathering.domain.model.Jogador;
 import com.zappts.magicthegathering.domain.repository.JogadorRepository;
 
 @Service
-public class JogadorService {
+public class JogadorService implements UserDetailsService {
 
 	@Autowired
 	private JogadorRepository repository;
+	
+	private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	
 	
 	public List<Jogador> getAll() {
 		return repository.findAll();
@@ -31,6 +38,7 @@ public class JogadorService {
 	}
 	
 	public Jogador create(Jogador jogador) {
+		jogador.setPassword(passwordEncoder.encode(jogador.getPassword()));
 		return repository.save(jogador);
 	}
 	
@@ -54,5 +62,12 @@ public class JogadorService {
 		repository.deleteById(id);
 		
 		return getAll();
+	}
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Jogador jogador = repository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException("User not found for username: "+ username));
+		return jogador;
 	}
 }
