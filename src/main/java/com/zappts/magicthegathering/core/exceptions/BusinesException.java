@@ -28,7 +28,8 @@ public abstract class BusinesException extends RuntimeException {
 		CARTA_NOT_FOUND_EXCEPTION("Carta not found."),
 		CARTA_DUPLICATED_EXCEPTION("Carta is duplicated."),
 		INTERNAL_SERVER_ERROR_EXCEPTION("Internal server error."),
-		METHOD_ARGUMENT_NOT_VALID_EXCEPTION("Argument not valid.");
+		METHOD_ARGUMENT_NOT_VALID_EXCEPTION("Argument not valid."),
+		UNAUTHORIZED_EXCEPTION("Jogador não autorizado.");
 		
 		private String message;
 		

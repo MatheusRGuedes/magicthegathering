@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.zappts.magicthegathering.core.exceptions.ArgumentNotValidException;
 import com.zappts.magicthegathering.core.exceptions.BusinesException;
 import com.zappts.magicthegathering.core.exceptions.InternalServerErrorException;
+import com.zappts.magicthegathering.core.exceptions.UnauthorizedException;
 
 /*
  * ControllerAdvice --> Classe de aviso para o spring que será um bean manipulação chamado nas camadas
  * ExceptionHandler --> Invocação do método de acordo com o tipo da exceção gerado, através da anotação acima
+ * 
+ * ResponseEntityExceptionHandler --> Classe padrão de exceções do spring, não usei, pois deu conflito com 
+ * 									  essas configurações;
  * */
 
 @ControllerAdvice
@@ -38,6 +42,6 @@ public class ExceptionHandlerConfiguration {
 	
 	@ExceptionHandler(AuthenticationException.class)
 	public ResponseEntity<?> exceptionHandler(AuthenticationException exception) {
-		return new ExceptionHandlerResponseBuilder(exception, HttpStatus.UNAUTHORIZED).build();
+		return new ExceptionHandlerResponseBuilder(new UnauthorizedException(), HttpStatus.UNAUTHORIZED).build();
 	}
 }
