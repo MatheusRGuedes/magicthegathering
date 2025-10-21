@@ -65,8 +65,8 @@ public class SecurityConfigV2 {
 			String uri = request.getRequestURI();
 			//System.out.println(uri);
 			
-			if (uri.substring(uri.lastIndexOf("/")).length() > 1
-					|| request.getRequestURI().contains("listas")) {
+			if (uri.substring(uri.lastIndexOf("/")).contains("jogadores/")  
+					&& request.getRequestURI().contains("listas")) {
 				this.jogadorId = request.getRequestURI().split("/")[3];
 			}  else {
 				this.jogadorId = null;

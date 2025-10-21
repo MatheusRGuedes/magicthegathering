@@ -27,7 +27,7 @@ public class Jogador implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false, length = 60)
+	@Column(nullable = false, length = 60, unique = true)
 	private String username;
 	
 	@Column(nullable = false)
@@ -39,6 +39,10 @@ public class Jogador implements UserDetails {
 	
 	public Jogador() {}
 	
+	public Jogador(String username, String password) {
+		setUsername(username);
+		setPassword(password);
+	}
 
 	public Long getId() {
 		return id;

@@ -10,5 +10,5 @@ import com.zappts.magicthegathering.domain.model.Jogador;
 @Repository
 public interface JogadorRepository extends JpaRepository<Jogador, Long> {
 
-	Optional<Jogador> findByUsername(String username);
+	Optional<Jogador> findByUsername(String username); 
 }

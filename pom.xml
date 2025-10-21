@@ -71,14 +71,14 @@
 		</dependency>
 		
 		<!-- Controle de versão de banco de dados e migração -->
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-mysql</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.flywaydb</groupId>-->
+<!--			<artifactId>flyway-core</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.flywaydb</groupId>-->
+<!--			<artifactId>flyway-mysql</artifactId>-->
+<!--		</dependency>-->
 		
 		<!-- Dependência que gera todos os detalhes do swagger -->
 		<dependency>

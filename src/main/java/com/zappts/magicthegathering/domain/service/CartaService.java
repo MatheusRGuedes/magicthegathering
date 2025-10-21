@@ -20,8 +20,6 @@ import com.zappts.magicthegathering.domain.repository.CartaRepository;
 import com.zappts.magicthegathering.domain.repository.JogadorRepository;
 import com.zappts.magicthegathering.domain.repository.ListaJogadorRepository;
 
-//TODO adicionar o id a ser mostrado ao lançar exceções
-
 @Service
 public class CartaService {
 

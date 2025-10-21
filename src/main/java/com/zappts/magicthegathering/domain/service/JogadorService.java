@@ -10,7 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.zappts.magicthegathering.core.exceptions.BusinesException.Codes;
 import com.zappts.magicthegathering.core.exceptions.JogadorNotFoundException;
+import com.zappts.magicthegathering.core.exceptions.UsernameExistsException;
 import com.zappts.magicthegathering.domain.model.Jogador;
 import com.zappts.magicthegathering.domain.repository.JogadorRepository;
 
@@ -38,6 +40,10 @@ public class JogadorService implements UserDetailsService {
 	}
 	
 	public Jogador create(Jogador jogador) {
+		
+		if (repository.findByUsername(jogador.getUsername()).isPresent()) {
+			throw new UsernameExistsException();
+		}
 		jogador.setPassword(passwordEncoder.encode(jogador.getPassword()));
 		return repository.save(jogador);
 	}

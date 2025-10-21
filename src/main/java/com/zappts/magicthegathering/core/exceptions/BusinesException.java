@@ -24,6 +24,7 @@ public abstract class BusinesException extends RuntimeException {
 	
 	public enum Codes {
 		JOGADOR_NOT_FOUND_EXCEPTION("Jogador not found."),
+		USERNAME_EXISTS_EXCEPTION("Username already exists."),
 		LISTA_NOT_FOUND_EXCEPTION("Lista not found."),
 		CARTA_NOT_FOUND_EXCEPTION("Carta not found."),
 		CARTA_DUPLICATED_EXCEPTION("Carta is duplicated."),
