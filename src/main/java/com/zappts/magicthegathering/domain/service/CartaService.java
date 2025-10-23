@@ -1,6 +1,5 @@
 package com.zappts.magicthegathering.domain.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,21 +35,16 @@ public class CartaService {
 		
 		if (!jogadorRepository.existsById(jogadorId)) {
 			throw new JogadorNotFoundException(jogadorId);
-		}
-		
+		}		
 		if (!listaJogadorRepository.existsById(listaId)) {
 			throw new ListaNotFoundException(listaId);
 		}
 		
-		List<Carta> listaCartas = new ArrayList<>();
+		final String order = orderParam.isPresent() ? 
+				orderParam.get() : null;		
+		final List<Carta> cartas = this.findByListaId(listaId, order);
 		
-		if (orderParam.isPresent()) {
-			listaCartas = getCartasSorted(listaId, orderParam.get());
-		} else {
-			listaCartas = repository.findByListaId(listaId);
-		}
-		
-		return listaCartas;
+		return cartas;
 	}
 	
 	public Carta getCarta(Long jogadorId, Long listaId, Long cartaId) {
@@ -134,7 +128,7 @@ public class CartaService {
 	}
 	
 	// Get Cartas Ordered
-	private List<Carta> getCartasSorted(Long listaId, String order) {
+	private List<Carta> findByListaId(Long listaId, String order) {
 		if ("nome".equalsIgnoreCase(order) || "valor".equalsIgnoreCase(order)) {
 			return repository.findByListaId(listaId, Sort.by(Direction.ASC, order));
 		}
