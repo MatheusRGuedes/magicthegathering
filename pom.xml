@@ -14,7 +14,8 @@
 	<name>magicthegathering</name>
 	<description>Projeto técnico para simular o gerenciamento de cartas do jogo Magic The Gathering.</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
+		<spring-boot.version>3.3.4</spring-boot.version>
 	</properties>
 	
 	<dependencies>
@@ -63,13 +64,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		
-		<!-- Conversor de entidade e objetos -->
-		<dependency>
-		    <groupId>org.modelmapper</groupId>
-		    <artifactId>modelmapper</artifactId>
-		    <version>3.1.0</version>
-		</dependency>
-		
 		<!-- Controle de versão de banco de dados e migração -->
 <!--		<dependency>-->
 <!--			<groupId>org.flywaydb</groupId>-->
@@ -93,6 +87,20 @@
 		    <artifactId>springfox-swagger-ui</artifactId>
 		    <version>3.0.0</version>
 		</dependency>
+		
+		 <!-- Dependência principal do MapStruct -->
+	    <dependency>
+	        <groupId>org.mapstruct</groupId>
+	        <artifactId>mapstruct</artifactId>
+	        <version>1.5.5.Final</version>
+	    </dependency>
+	    <!-- Processador de anotações (necessário para gerar os mappers) -->
+	    <dependency>
+	        <groupId>org.mapstruct</groupId>
+	        <artifactId>mapstruct-processor</artifactId>
+	        <version>1.5.5.Final</version>
+	        <scope>provided</scope>
+	    </dependency>
 	</dependencies>
 
 	<build>
