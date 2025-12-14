@@ -16,6 +16,10 @@ public class ListaJogadorDTO {
 	public ListaJogadorDTO() {
 	}
 	
+	public ListaJogadorDTO(String nome) {
+		this.nome = nome;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

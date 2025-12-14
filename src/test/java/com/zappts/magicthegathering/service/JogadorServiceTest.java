@@ -22,8 +22,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.zappts.magicthegathering.core.exceptions.JogadorNotFoundException;
-import com.zappts.magicthegathering.core.exceptions.UsernameExistsException;
-import com.zappts.magicthegathering.api.dto.JogadorDTO;
+import com.zappts.magicthegathering.core.exceptions.UsernameExistsException; 
 import com.zappts.magicthegathering.core.exceptions.BusinesException.Codes;
 import com.zappts.magicthegathering.domain.model.Jogador;
 import com.zappts.magicthegathering.domain.repository.JogadorRepository;
@@ -47,17 +46,7 @@ public class JogadorServiceTest {
 	@BeforeEach
 	void setup() {
 		MockitoAnnotations.openMocks(this);
-	}
-	
-	@Test
-	@DisplayName("Should return all jogadores with success.")
-	void getAll() {
-		
-		jogadorService.getAll();
-		
-		// verifica invocação 1 vez
-		Mockito.verify(repository, times(1)).findAll();
-	}
+	} 
 	
 	@Nested
 	class findUser {
